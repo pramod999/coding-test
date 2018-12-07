@@ -1,5 +1,6 @@
 package com.monsanto.mbt;
 
+import java.util.Comparator;
 import java.util.Date;
 
 
@@ -37,4 +38,31 @@ public class Widget {
     public void setProductionDate(Date productionDate) {
         this.productionDate = productionDate;
     }
+    
+    
+    
+    @Override
+	public String toString() {
+		return "Widget [serialNumber=" + serialNumber + ", color=" + color + ", productionDate=" + productionDate + "]";
+	}
+
+
+
+	public static Comparator<Widget> WIDGET_COLOR_COMPARATOR = new Comparator<Widget>() {
+		public int compare(Widget w1, Widget w2) {
+			return w1.getColor().compareTo(w2.getColor());
+		}
+    	 };
+    	 
+    public static Comparator<Widget> WIDGET_DATE_COMPARATOR = new Comparator<Widget>() {
+    			public int compare(Widget w1, Widget w2) {
+    				if (w1.getProductionDate().before(w2.getProductionDate())) {
+    		            return -1;
+    		        } else if (w1.getProductionDate().after(w2.getProductionDate())) {
+    		            return 1;
+    		        } else {
+    		            return 0;
+    		        }        
+    			}
+    	    	 };	 
 }
